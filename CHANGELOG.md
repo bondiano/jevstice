@@ -23,6 +23,7 @@
   flags, `rm`, an unknown program or an unknown `git` subcommand - stays consequential, because
   holding something harmless is cheaper than passing something real. A commit message's own `&`, `;`
   and quotes are read as data rather than as shell syntax.
+- **Command interpreters remain consequential, and change intent overrides routine wording (FR-30, FR-31).** The safe reporting list excludes `awk`, `env`, and `bc`, which can invoke commands. The request screen treats `improve` as a change signal, so "review and improve parser" enters the judged workflow.
 
 - **A simple task's plan proposal is not held (FR-02).** `proposeGate` passes `write xd://propose`
   once triage has confirmed the request simple: planning a simple task needs no plan review and costs
@@ -38,7 +39,7 @@
   registration. `DEFAULT_CONFIG.courseCheck` is the only shipped default that changed; the gates, the
   floors, the refusal ledger and the fail-closed policy are untouched.
 
-- Verification: `bun test` 170 pass / 0 fail / 622 expect() calls across 8 files; `bun run typecheck`
+- Verification: `bun test` 172 pass / 0 fail / 626 expect() calls across 8 files; `bun run typecheck`
   clean. Live `omp` 18.10.4 sessions with this checkout loaded explicitly and `TYPESAFE_API_KEY_COMMAND`
   replaced by a probe that records every key resolution: "закоммить и запушь текущее состояние" made 0
   resolutions, showed no Jevstice message and finished the git work itself, while "добавь файл

@@ -27,7 +27,7 @@ const ROUTINE =
 
 /** What the request changes: these words beat every routine signal, wherever they appear. */
 const CHANGE =
-	/\b(?:implement|add|bug|creat|delet|extract|featur|fix|generat|implement|integrat|migrat|move|rename|refactor|remov|rewrit|split|support|updat|upgrad|writ)\w*\b|(?:добав|реализ|почин|исправ|поправ|правк|фикс|созда|напиш|перепиш|передела|доработ|улучш|обнов|удал|перенес|перенест|перемест|вынес|раздели|поддерж|внедр|миграц|рефактор|докрут|додел|фич)/iu;
+	/\b(?:implement|add|bug|improv|creat|delet|extract|featur|fix|generat|implement|integrat|migrat|move|rename|refactor|remov|rewrit|split|support|updat|upgrad|writ)\w*\b|(?:добав|реализ|почин|исправ|поправ|правк|фикс|созда|напиш|перепиш|передела|доработ|улучш|обнов|удал|перенес|перенест|перемест|вынес|раздели|поддерж|внедр|миграц|рефактор|докрут|додел|фич)/iu;
 
 /**
  * The screen's verdict for one request. An empty or unrecognised request is `judged`: the judge is

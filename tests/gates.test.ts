@@ -110,6 +110,16 @@ describe("T3 - what counts as a consequential change", () => {
 		}
 	});
 
+	test("FR-31: shell-capable reporting programs remain consequential", () => {
+		for (const command of [
+			"awk 'BEGIN {system(\"rm -rf build\")}'",
+			"env rm -rf build",
+			"printf '!rm -rf build\\n' | bc",
+		]) {
+			expect(isConsequentialMutation("bash", { command })).toBe(true);
+		}
+	});
+
 	test("FR-31: a substitution, a redirection or a background operator is never read as reporting", () => {
 		expect(isNonMutatingCommand("git commit -m \"$(cat msg)\"")).toBe(false);
 		expect(isNonMutatingCommand("`rm -rf build`")).toBe(false);
@@ -428,6 +438,10 @@ describe("FR-30 - the request screen decides whether a request enters the workfl
 		expect(weightOf("where is the parser defined?")).toBe("quiet");
 		expect(weightOf("проверь и поправь форматирование")).toBe("judged");
 		expect(mutationGate(freshState(), config(), "write", { path: "src/a.ts" }).block).toBe(true);
+	});
+
+	test("FR-30: change intent wins over a routine review signal", () => {
+		expect(weightOf("review and improve parser")).toBe("judged");
 	});
 
 	test("the screen does not override a task that already entered the workflow", () => {
